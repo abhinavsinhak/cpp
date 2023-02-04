@@ -171,7 +171,8 @@ int main()
             exit(1);
             break;
         default:
-            cout << "enter the valid choice" << endl;
+            cout << "enter the valid choice: " 
+                                 << endl;
             continue;
         }
     }

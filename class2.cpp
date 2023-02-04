@@ -37,7 +37,7 @@ int main()
     cin>>n2;
     h1.setlevel(n2);
 
-    // printing the level
+    // printing the level hh
      
     cout<<"health\n"<<h1.gethealth()<<endl;
     cout<<"level\n"<<h1.getlevel()<<endl;
