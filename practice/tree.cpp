@@ -101,8 +101,10 @@ int main()
     levelOrderTraversal(root);
     cout<<"inorder traversal: "<<endl;
     inorder(root);
-    cout<<endl<<"preorder traversal: "<<endl;preorder(root);
-    cout<<endl<<"postorder traversal: "<<endl;postorder(root);
+    cout<<endl<<"preorder traversal: "<<endl;
+    preorder(root);
+    cout<<endl<<"postorder traversal: "<<endl;
+    postorder(root);
 
     return 0;
 }
