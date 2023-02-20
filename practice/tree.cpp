@@ -18,7 +18,8 @@ public:
 };
 
 node *buildTree(node *root)
-{   cout << "enter the data: " << endl;
+{
+    cout << "enter the data: " << endl;
     int data;
     cin >> data;
     root = new node(data);
@@ -26,42 +27,43 @@ node *buildTree(node *root)
     if (data == -1)
     {
         return NULL;
-      
     }
     cout << "enter data to insert in left" << endl;
     root->left = buildTree(root->left);
     cout << "enter the data to insert in right" << endl;
     root->right = buildTree(root->right);
     return root;
-    
 }
-int maxheight(node* root){
-    node * temp = root;
-    if ((temp==NULL))
+int maxheight(node *root)
+{
+    node *temp = root;
+    if ((temp == NULL))
     {
-       return 0;
+        return 0;
     }
     int len1 = maxheight(root->left);
     int len2 = maxheight(root->right);
 
-    if(len1>len2){
-        return (len1+1);
+    if (len1 > len2)
+    {
+        return (len1 + 1);
     }
-    else return (len2+1);
-    
+    else
+        return (len2 + 1);
 }
 void levelOrderTraversal(node *root)
-{    
+{
     queue<node *> q;
     q.push(root);
     q.push(NULL);
     while (!q.empty())
-    {   
+    {
         node *temp = q.front();
         q.pop();
-        
+
         if (temp == NULL)
-        {   cout << endl;
+        {
+            cout << endl;
             if (!q.empty())
             {
                 q.push(NULL);
@@ -80,46 +82,51 @@ void levelOrderTraversal(node *root)
             }
         }
     }
-
 }
-void inorder(node* root){
-    if(root==NULL){
+void inorder(node *root)
+{
+    if (root == NULL)
+    {
         return;
     }
     inorder(root->left);
-    cout<<root->data<<" ";
+    cout << root->data << " ";
     inorder(root->right);
 }
-void preorder(node* root){
-    if(root == NULL){
+void preorder(node *root)
+{
+    if (root == NULL)
+    {
         return;
     }
-    cout<<root->data<<" ";
+    cout << root->data << " ";
     preorder(root->left);
     preorder(root->right);
-
 }
-void postorder(node* root){
-    if(root == NULL){
+void postorder(node *root)
+{
+    if (root == NULL)
+    {
         return;
     }
     postorder(root->left);
     postorder(root->right);
-    cout<<root->data<<" ";
-    
+    cout << root->data << " ";
 }
 int main()
 {
     node *root = NULL;
     root = buildTree(root);
     // 4 5 6 8 -1 -1 -1 7 -1 9 -1 -1 10 1 2 -1 -1 -1 3 -1 4 -1 -1
- levelOrderTraversal(root);
- cout<<"height pf the tree: "<<maxheight(root)<<endl;
-    cout<<"inorder traversal: "<<endl;
+    levelOrderTraversal(root);
+    cout << "height pf the tree: " << maxheight(root) << endl;
+    cout << "inorder traversal: " << endl;
     inorder(root);
-    cout<<endl<<"preorder traversal: "<<endl;
+    cout << endl
+         << "preorder traversal: " << endl;
     preorder(root);
-    cout<<endl<<"postorder traversal: "<<endl;
+    cout << endl
+         << "postorder traversal: " << endl;
     postorder(root);
 
     return 0;
