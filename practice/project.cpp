@@ -39,8 +39,8 @@ public:
         return name_;
     }
     string getMove() const override {
-        std::default_random_engine rng(std::time(nullptr));
-        std::uniform_int_distribution<int> dist(1, 3);
+        static std::default_random_engine rng(std::random_device{}());
+        static std::uniform_int_distribution<int> dist(1, 3);
         int moveNum = dist(rng);
         string move;
         switch (moveNum) {
@@ -59,6 +59,7 @@ public:
 private:
     string name_;
 };
+
 
 // Function to determine the winner of the game
 string determineWinner(const Player& player1, const Player& player2) {
