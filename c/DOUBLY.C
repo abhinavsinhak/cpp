@@ -1,4 +1,4 @@
-     //implementing the doubly linked list
+    //implementing the doubly linked list
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
@@ -104,16 +104,42 @@ void print(){
   temp= temp->next;
  }
 }
+void reverse(){
+ struct node* before = NULL;
+ struct node* curr = head;
+ struct node* ahead = NULL;
+ while(curr !=NULL){
+  ahead = curr->next;
+  curr->next = before;
+  curr->pre  = ahead;
+  before = curr;
+  curr = ahead;
+ }
+ head = before;
+ tail = ahead;
+}
+void print_rev(){
+ struct node* temp = tail;
+ while(temp !=NULL){
+  printf("%d ",temp->data);
+  temp = temp->pre;
+ }
+}
 void main(){
  clrscr();
  insertAtHead(10);
  insertAtHead(9);
  insertAtTail(11);
-insertAtPos(2,4);
+ insertAtPos(2,4);
 
  print();
  printf("\n");
  delete(2);
  print();
+ printf("\n");
+ reverse();
+ print();
+ printf("\n");
+ print_rev();
  getch();
 }
