@@ -3,7 +3,7 @@
 
 using namespace std;
 
-template<typename T>
+template<class T>
 T getscaler(vector<T> &v1,vector<T> &v2){
      T total = 0;
     for(int i=0;i<3;i++){
