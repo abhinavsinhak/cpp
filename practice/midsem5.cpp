@@ -1,5 +1,5 @@
 #include <iostream>
-#include <memory>
+using namespace std;
 
 class Person {
 protected:
@@ -11,7 +11,7 @@ public:
     virtual ~Person() {}
 };
 
-class Admin : public Person {
+class Admin : virtual public Person {
 protected:
     int salary;
 public:
@@ -19,7 +19,7 @@ public:
     int getBonus() const override { return salary * 0.1; }
 };
 
-class Account : public Person {
+class Account : virtual public Person {
 protected:
     int balance;
 public:
@@ -27,28 +27,30 @@ public:
     int getBonus() const override { return balance * 0.05; }
 };
 
-class Master : public Person {
-protected:
-    Admin admin;
-    Account account;
+class Master : public Admin, public Account {
 public:
     Master(std::string name, int age, int salary, int balance)
-        : Person(name, age), admin(name, age, salary), account(name, age, balance) {};
+        : Person(name, age), Admin(name, age, salary), Account(name, age, balance) {};
 
-    int getBonus() const override { return admin.getBonus() + account.getBonus();}
+    int getBonus() const override { return Admin::getBonus() + Account::getBonus();}
 };
+
 
 int main() {
     const int NUM_EMPLOYEES = 3;
-    std::unique_ptr<Person> employees[NUM_EMPLOYEES] = {
-        std::make_unique<Admin>("John", 30, 50000),
-        std::make_unique<Account>("Mary", 25, 100000),
-        std::make_unique<Master>("Bob", 40, 70000, 200000)
+    Person* employees[NUM_EMPLOYEES] = {
+        new Admin("John", 30, 50000),
+        new Account("Mary", 25, 100000),
+        new Master("Bob", 40, 70000, 200000)
     };
 
-    for (const auto& employee : employees) {
-        std::cout << employee->getBonus() << std::endl;
+    for (int i = 0; i < NUM_EMPLOYEES; i++) {
+        cout << employees[i]->getBonus() << endl;
+    }
+
+    for (int i = 0; i < NUM_EMPLOYEES; i++) {
+        delete employees[i];
     }
 
     return 0;
-} 
+}
