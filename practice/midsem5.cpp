@@ -16,7 +16,7 @@ protected:
     int salary;
 public:
     Admin(std::string name, int age, int salary) : Person(name, age), salary(salary) {}
-    int getBonus() const override { return salary * 0.1; }
+    virtual int getBonus() const override { return salary * 0.1; }
 };
 
 class Account : virtual public Person {
@@ -24,7 +24,7 @@ protected:
     int balance;
 public:
     Account(std::string name, int age, int balance) : Person(name, age), balance(balance) {}
-    int getBonus() const override { return balance * 0.05; }
+    virtual int getBonus() const override { return balance * 0.05; }
 };
 
 class Master : public Admin, public Account {
@@ -32,7 +32,7 @@ public:
     Master(std::string name, int age, int salary, int balance)
         : Person(name, age), Admin(name, age, salary), Account(name, age, balance) {};
 
-    int getBonus() const override { return Admin::getBonus() + Account::getBonus();}
+    virtual int getBonus() const override { return Admin::getBonus() + Account::getBonus();}
 };
 
 
