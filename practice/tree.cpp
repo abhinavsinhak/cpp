@@ -41,8 +41,8 @@ int maxheight(node *root)
     {
         return 0;
     }
-    int len1 = maxheight(root->left);
-    int len2 = maxheight(root->right);
+    int len1 = maxheight(temp->left);
+    int len2 = maxheight(temp->right);
 
     if (len1 > len2)
     {
@@ -113,21 +113,54 @@ void postorder(node *root)
     postorder(root->right);
     cout << root->data << " ";
 }
+void buildtreelevelorder(node *&root)
+{
+    queue<node *> q;
+    cout << "enter the data for root" << endl;
+    int data;
+    cin >> data;
+    root = new node(data);
+    q.push(root);
+    while (!q.empty())
+    {
+        node *temp = q.front();
+        q.pop();
+        cout << "enter the left node for" << temp->data << endl;
+        int leftdata;
+        cin >> leftdata;
+        if (leftdata != -1)
+        {
+            temp->left = new node(leftdata);
+            q.push(temp->left);
+        }
+        cout << "enter the right node for" << temp->data << endl;
+        int rightdata;
+        cin >> rightdata;
+        if (rightdata != -1)
+        {
+            temp->right = new node(rightdata);
+            q.push(temp->right);
+        }
+    }
+}
 int main()
 {
     node *root = NULL;
-    root = buildTree(root);
-    // 4 5 6 8 -1 -1 -1 7 -1 9 -1 -1 10 1 2 -1 -1 -1 3 -1 4 -1 -1
+    buildtreelevelorder(root);
     levelOrderTraversal(root);
-    cout << "height pf the tree: " << maxheight(root) << endl;
-    cout << "inorder traversal: " << endl;
-    inorder(root);
-    cout << endl
-         << "preorder traversal: " << endl;
-    preorder(root);
-    cout << endl
-         << "postorder traversal: " << endl;
-    postorder(root);
+    cout<<endl<<maxheight(root)<<endl;
+    // root = buildTree(root);
+    //  4 5 6 8 -1 -1 -1 7 -1 9 -1 -1 10 1 2 -1 -1 -1 3 -1 4 -1 -1
+    //  levelOrderTraversal(root);
+    //  cout << "height pf the tree: " << maxheight(root) << endl;
+    //  cout << "inorder traversal: " << endl;
+    //  inorder(root);
+    //  cout << endl
+    //       << "preorder traversal: " << endl;
+    //  preorder(root);
+    //  cout << endl
+    //       << "postorder traversal: " << endl;
+    //  postorder(root);
 
     return 0;
 }

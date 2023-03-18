@@ -19,6 +19,7 @@ public:
         capacity = 0;
     }
     void input() {
+       
         cout << "Enter Train Name: ";
         getline(cin, name);
         cout << "Enter Train Number: ";
@@ -29,9 +30,11 @@ public:
         cout << "Enter Destination Station: ";
         getline(cin, destination);
         cout << "Enter Journey Date (dd/mm/yyyy): ";
+        cin.ignore();
         getline(cin, journeyDate);
         cout << "Enter Capacity: ";
         cin >> capacity;
+        
     }
     void display() {
         cout << "Train Name: " << name << endl;
