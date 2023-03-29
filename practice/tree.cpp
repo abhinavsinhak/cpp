@@ -146,21 +146,21 @@ void buildtreelevelorder(node *&root)
 int main()
 {
     node *root = NULL;
-    buildtreelevelorder(root);
-    levelOrderTraversal(root);
-    cout<<endl<<maxheight(root)<<endl;
-    // root = buildTree(root);
-    //  4 5 6 8 -1 -1 -1 7 -1 9 -1 -1 10 1 2 -1 -1 -1 3 -1 4 -1 -1
-    //  levelOrderTraversal(root);
-    //  cout << "height pf the tree: " << maxheight(root) << endl;
-    //  cout << "inorder traversal: " << endl;
-    //  inorder(root);
-    //  cout << endl
-    //       << "preorder traversal: " << endl;
-    //  preorder(root);
-    //  cout << endl
-    //       << "postorder traversal: " << endl;
-    //  postorder(root);
+    // buildtreelevelorder(root);
+    // levelOrderTraversal(root);
+    // cout<<endl<<maxheight(root)<<endl;
+    root = buildTree(root);
+     //4 5 6 8 -1 -1 -1 7 -1 9 -1 -1 10 1 2 -1 -1 -1 3 -1 4 -1 -1
+     levelOrderTraversal(root);
+     cout << "height pf the tree: " << maxheight(root) << endl;
+     cout << "inorder traversal: " << endl;
+     inorder(root);
+     cout << endl
+          << "preorder traversal: " << endl;
+     preorder(root);
+     cout << endl
+          << "postorder traversal: " << endl;
+     postorder(root);
 
     return 0;
 }
